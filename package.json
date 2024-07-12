@@ -1,0 +1,22 @@
+{
+  "name": "barter-porter",
+  "version": "1.0.0",
+  "description": "barter and porter",
+  "main": "index.ts",
+  "scripts": {
+    "start:server": "npm run ts --prefix ./server",
+    "start:client": "npm run start --prefix ./client",
+    "app": "concurrently \"npm run start:server\" \"npm run start:client\"",
+    "start": "concurrently -n \" FRONTEND , BACKEND \" -c \"red,blue\" \"npm run start:server\" \"npm run start:client\""
+  },
+  "author": "shan",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "barter-porter"
+  }
+}
