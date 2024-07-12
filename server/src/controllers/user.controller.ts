@@ -6,53 +6,78 @@ import {
   imageUploadHandler,
 } from "../utils";
 
-const registerUser = asyncHandler(async (req: any, res: any): Promise<any> => {
-  const { username, email, password, about, mobile, location } = req.body;
+const userRegistration = asyncHandler(
+  async (req: any, res: any): Promise<any> => {
+    const { username, email, password, about, mobile, location } = req.body;
 
-  if (
-    [username, email, password, about, mobile, location].some(
-      (item) => !item || item.trim() === ""
-    )
-  ) {
-    throw new ApiErrorHandler(400, "All fields are required");
+    if (
+      [username, email, password, about, mobile, location].some(
+        (item) => !item || item.trim() === ""
+      )
+    ) {
+      throw new ApiErrorHandler(400, "All fields are required");
+    }
+
+    const isUserExist = await User.findOne({ email });
+
+    if (isUserExist) throw new ApiErrorHandler(400, "User already exist");
+
+    const avatarLocalPath = req.file?.path;
+
+    if (!avatarLocalPath) {
+      throw new ApiErrorHandler(400, "Please upload a profile image file");
+    }
+    const uploadResult = await imageUploadHandler(avatarLocalPath);
+    if (!uploadResult) {
+      throw new ApiErrorHandler(400, "Profile image required");
+    }
+
+    const user = await User.create({
+      username,
+      email,
+      password,
+      about,
+      mobile,
+      location,
+      avatar: uploadResult?.url,
+    });
+
+    const isUserCreated = await User.findById(user._id).select(
+      "-password -refreshToken"
+    );
+
+    if (!isUserCreated) throw new ApiErrorHandler(500, "User not created");
+
+    return res.status(201).json(
+      new ApiResponseHandler(200, {
+        message: "User registered successfully",
+        isUserCreated,
+      })
+    );
   }
+);
 
-  const isUserExist = await User.findOne({ email });
+const userList = asyncHandler(async (req: any, res: any): Promise<any> => {
+  const users = await User.find({});
 
-  if (isUserExist) throw new ApiErrorHandler(400, "User already exist");
-
-  const avatarLocalPath = req.file?.path;
-
-  if (!avatarLocalPath) {
-    throw new ApiErrorHandler(400, "Please upload a profile image file");
-  }
-  const uploadResult = await imageUploadHandler(avatarLocalPath);
-  if (!uploadResult) {
-    throw new ApiErrorHandler(400, "Profile image required");
-  }
-
-  const user = await User.create({
-    username,
-    email,
-    password,
-    about,
-    mobile,
-    location,
-    avatar: uploadResult?.url,
-  });
-
-  const isUserCreated = await User.findById(user._id).select(
-    "-password -refreshToken"
-  );
-
-  if (!isUserCreated) throw new ApiErrorHandler(500, "User not created");
-
-  return res.status(201).json(
+  console.log(users);
+  return res.status(200).json(
     new ApiResponseHandler(200, {
-      message: "User registered successfully",
-      isUserCreated,
+      message: "Users retrieved successfully",
+      users,
     })
   );
 });
 
-export { registerUser };
+const userDetail = asyncHandler(async (req: any, res: any): Promise<any> => {
+  const user = await User.findById(req.params.id);
+  if (!user) throw new ApiErrorHandler(404, "User not found");
+  return res.status(200).json(
+    new ApiResponseHandler(200, {
+      message: "User retrieved successfully",
+      user,
+    })
+  );
+});
+
+export { userRegistration, userList, userDetail };
