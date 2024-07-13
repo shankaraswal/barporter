@@ -1,6 +1,6 @@
-import jwt from "jsonwebtoken";
-import { User, IUser } from "../models/user/user.model";
 import { Request, Response } from "express";
+import jwt from "jsonwebtoken";
+import { User, IUser } from "../models";
 import {
   ApiErrorHandler,
   ApiResponseHandler,
