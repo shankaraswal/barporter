@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*git 
 
 node_modules
+public/temp/images
 dist
 dist-ssr
 *.local
