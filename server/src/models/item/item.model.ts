@@ -31,14 +31,23 @@ const itemSchema = new Schema(
       type: Number,
       default: 0,
     },
-    owner: {
+    discountedPrice: {
+      type: Number,
+      default: 0,
+    },
+    trader: {
       type: Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
+    tradeWith: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
     isAvailable: {
       type: Boolean,
       default: true,
+      required: true,
     },
   },
   { timestamps: true }
