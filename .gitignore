@@ -14,6 +14,9 @@ server/public
 dist
 client/dist
 server/dist
+dist
+server/.env
+server/public/temp/images
 dist-ssr
 *.local
 server/.env
