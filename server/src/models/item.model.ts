@@ -12,10 +12,12 @@ const itemSchema = new Schema(
       required: true,
       trim: true,
     },
-    prodImage: {
-      type: String,
-      required: true,
-    },
+    prodImages: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
     category: {
       type: String,
       required: true,
@@ -58,7 +60,7 @@ const Item = mongoose.model("Item", itemSchema);
 interface IItem extends Document {
   title: string;
   description: string;
-  prodImage: string;
+  prodImages: string[];
   category: string;
   price: number;
   discount: number;

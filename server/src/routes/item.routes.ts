@@ -7,6 +7,6 @@ const router = Router();
 // SECURE ROUTES: items
 router
   .route("/add")
-  .post(verifyJWToken, uploadImage.single("prodImage"), addItem);
+  .post(verifyJWToken, uploadImage.array("prodImages"), addItem);
 
 export default router;

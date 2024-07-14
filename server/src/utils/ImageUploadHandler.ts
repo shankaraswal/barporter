@@ -19,6 +19,7 @@ const uploadImageOnCloudinary = async (localFilePath: string): Promise<any> => {
       resource_type: "auto",
       folder: "barter",
     });
+    fs.unlinkSync(localFilePath);
     return result;
   } catch (error) {
     console.log(error);

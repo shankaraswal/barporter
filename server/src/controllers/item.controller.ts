@@ -11,7 +11,10 @@ import { Item, IItem, User, IUser } from "../models";
 // ADD ITEM
 // ---------------------------------------------------------------
 const addItem = asyncHandler(
-  async (req: Request & { user: IUser }, res: Response): Promise<void> => {
+  async (
+    req: Request & { user: IUser; files?: Express.Multer.File[] },
+    res: Response
+  ): Promise<void> => {
     const {
       title,
       description,
@@ -30,19 +33,22 @@ const addItem = asyncHandler(
       throw new ApiErrorHandler(400, "All fields are required");
     }
 
-    const productLocalPath = req.file?.path;
+    const productLocalPaths = req.files?.map((file) => file.path);
 
-    if (!productLocalPath) {
-      throw new ApiErrorHandler(400, "Please upload a profile image file");
-    }
-    const uploadResult = await imageUploadHandler(productLocalPath);
-    if (!uploadResult) {
-      throw new ApiErrorHandler(400, "Profile image required");
+    if (!productLocalPaths || productLocalPaths.length === 0) {
+      throw new ApiErrorHandler(400, "Please upload at least one image file");
     }
 
-    console.log("=================================");
-    console.log(req.user);
-    console.log("=================================");
+    // Upload all images and get their URLs
+    const uploadResults = await Promise.all(
+      productLocalPaths.map(imageUploadHandler)
+    );
+    const prodImages = uploadResults.map((result) => result.url);
+
+    if (!prodImages.every((url) => !!url)) {
+      throw new ApiErrorHandler(400, "Failed to upload one or more images");
+    }
+
     // return;
     const item = await Item.create({
       title,
@@ -53,16 +59,11 @@ const addItem = asyncHandler(
       price,
       discount,
       discountedPrice: price - discount,
-      prodImage: uploadResult.url,
+      prodImages,
       isAvailable,
     });
 
     const isItemAdded = await Item.findById(item._id);
-    console.log("--------------------------");
-    console.log("--------------------------");
-    console.log(isItemAdded);
-    console.log("--------------------------");
-    console.log("--------------------------");
 
     if (!isItemAdded) throw new ApiErrorHandler(500, "Item not added to DB");
 
