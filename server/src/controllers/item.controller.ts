@@ -76,4 +76,19 @@ const addItem = asyncHandler(
   }
 );
 
-export { addItem };
+// ---------------------------------------------------------------
+// ITEM LIST
+// ---------------------------------------------------------------
+const itemList = asyncHandler(
+  async (req: Request, res: Response): Promise<any> => {
+    const items = await Item.find({});
+
+    return res.status(200).json(
+      new ApiResponseHandler(200, {
+        message: "Item list data retrieved successfully",
+        data: items,
+      })
+    );
+  }
+);
+export { addItem, itemList };

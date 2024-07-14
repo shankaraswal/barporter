@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { verifyJWToken, uploadImage } from "../middlewares";
-import { addItem } from "../controllers";
+import { addItem, itemList } from "../controllers";
 
 const router = Router();
 
@@ -8,5 +8,6 @@ const router = Router();
 router
   .route("/add")
   .post(verifyJWToken, uploadImage.array("prodImages"), addItem);
-
+router.route("/list").get(verifyJWToken, itemList);
+// router.route("/detail/:id").get(verifyJWToken, itemDetail);
 export default router;

@@ -8,4 +8,4 @@ export {
   generateTokens,
   getCurrentUser,
 } from "./user.controller";
-export { addItem } from "./item.controller";
+export { addItem, itemList } from "./item.controller";
