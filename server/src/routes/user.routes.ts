@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { verifyJWToken } from "../middlewares/auth.middleware";
+import { verifyJWToken } from "../middlewares/userAuth.middleware";
 import {
   userRegistration,
   userLogin,
@@ -8,9 +8,8 @@ import {
   userDetail,
   refreshAccessToken,
   getCurrentUser,
-} from "../controllers/user.controller";
-
-import { uploadImage } from "../middlewares/multer.middleware";
+} from "../controllers";
+import { uploadImage } from "../middlewares";
 
 const router = Router();
 

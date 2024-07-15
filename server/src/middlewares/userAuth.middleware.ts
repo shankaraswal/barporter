@@ -1,7 +1,7 @@
-import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
 import { ApiErrorHandler, asyncHandler } from "../utils";
-import { IUser, User } from "../models/user/user.model";
+import { IUser, User } from "../models";
 
 export const verifyJWToken = asyncHandler(
   async (
@@ -19,12 +19,7 @@ export const verifyJWToken = asyncHandler(
       }
 
       const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-
       const uid = decodedToken;
-      console.log("=================================");
-      console.log(uid);
-      console.log("=================================");
-
       const user = await User.findById(uid).select("-password -refreshToken");
       if (!user) {
         throw new ApiErrorHandler(401, "Invalid Access Token");

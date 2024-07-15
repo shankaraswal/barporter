@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 
 const itemSchema = new Schema(
   {
@@ -12,7 +12,7 @@ const itemSchema = new Schema(
       required: true,
       trim: true,
     },
-    images: [
+    prodImages: [
       {
         type: String,
         required: true,
@@ -38,7 +38,6 @@ const itemSchema = new Schema(
     trader: {
       type: Schema.Types.ObjectId,
       ref: "User",
-      required: true,
     },
     tradeWith: {
       type: Schema.Types.ObjectId,
@@ -53,4 +52,22 @@ const itemSchema = new Schema(
   { timestamps: true }
 );
 
-export const User = mongoose.model("Item", itemSchema);
+const Item = mongoose.model("Item", itemSchema);
+
+// ---------------------------------------------------------------
+// USER INTERFACE
+// ---------------------------------------------------------------
+interface IItem extends Document {
+  title: string;
+  description: string;
+  prodImages: string[];
+  category: string;
+  price: number;
+  discount: number;
+  discountedPrice: number;
+  trader: any;
+  tradeWith: any;
+  isAvailable: boolean;
+}
+
+export { Item, IItem };

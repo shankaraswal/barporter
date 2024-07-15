@@ -1,6 +1,6 @@
-import jwt from "jsonwebtoken";
-import { User, IUser } from "../models/user/user.model";
 import { Request, Response } from "express";
+import jwt from "jsonwebtoken";
+import { User, IUser, Item } from "../models";
 import {
   ApiErrorHandler,
   ApiResponseHandler,
@@ -90,12 +90,12 @@ const userLogin = asyncHandler(
     );
 
     const loggedInUser = await User.findById(user._id).select(
-      "-password -refreshToken"
+      "-password -refreshToken -items -services -porterRequests"
     );
 
     const options = {
-      // httpOnly: false,
-      // secure: false,
+      httpOnly: false,
+      secure: false,
     };
 
     res
@@ -121,13 +121,23 @@ const userLogin = asyncHandler(
 // ---------------------------------------------------------------
 const userList = asyncHandler(
   async (req: Request, res: Response): Promise<any> => {
-    const users = await User.find({});
+    const users = await User.find({}).select("-password -refreshToken");
 
-    console.log(users);
+    // Fetch items for each user and include them in the user object
+    const usersWithItems = await Promise.all(
+      users.map(async (user) => {
+        const items = await Item.find({ trader: user._id });
+        return {
+          ...user.toObject(),
+          items,
+        };
+      })
+    );
+
     return res.status(200).json(
       new ApiResponseHandler(200, {
-        message: "Users retrieved successfully",
-        users,
+        message: "Users list data retrieved successfully",
+        users: usersWithItems,
       })
     );
   }
@@ -138,11 +148,18 @@ const userList = asyncHandler(
 // ---------------------------------------------------------------
 const userDetail = asyncHandler(
   async (req: Request, res: Response): Promise<any> => {
-    const user = await User.findById(req.params.id);
-    if (!user) throw new ApiErrorHandler(404, "User not found");
+    const userId = req.params.id;
+    const items = await Item.find({ trader: userId });
+    const currentUser = await User.findById(req.params.id).select(
+      "-password -refreshToken"
+    );
+    if (!currentUser) throw new ApiErrorHandler(404, "User not found");
+
+    const user = Object.assign(currentUser, { items });
+
     return res.status(200).json(
       new ApiResponseHandler(200, {
-        message: "User retrieved successfully",
+        message: "User data retrieved successfully",
         user,
       })
     );

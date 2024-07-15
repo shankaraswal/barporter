@@ -42,4 +42,4 @@ const serviceSchema = new Schema(
   { timestamps: true }
 );
 
-export const User = mongoose.model("Service", serviceSchema);
+export const Service = mongoose.model("Service", serviceSchema);
