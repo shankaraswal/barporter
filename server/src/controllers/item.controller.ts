@@ -48,8 +48,7 @@ const addItem = asyncHandler(
     if (!prodImages.every((url) => !!url)) {
       throw new ApiErrorHandler(400, "Failed to upload one or more images");
     }
-
-    // return;
+    const discountedPrice = price - price * (discount / 100);
     const item = await Item.create({
       title,
       description,
@@ -58,7 +57,7 @@ const addItem = asyncHandler(
       tradeWith: req.user, // ag pipeline
       price,
       discount,
-      discountedPrice: price - discount,
+      discountedPrice,
       prodImages,
       isAvailable,
     });
@@ -77,18 +76,91 @@ const addItem = asyncHandler(
 );
 
 // ---------------------------------------------------------------
-// ITEM LIST
+// ITEM LIST and SEARCH BY ITEM TITLE
 // ---------------------------------------------------------------
 const itemList = asyncHandler(
   async (req: Request, res: Response): Promise<any> => {
-    const items = await Item.find({});
+    const { search } = req.query; // Get search query from request query parameters
+
+    // Create a query object based on whether the search parameter is provided
+    const query = search ? { title: { $regex: search, $options: "i" } } : {};
+
+    // Find items based on the query object
+    const items = await Item.find(query);
+
+    // Fetch users for each item and include them in the item object
+    const listItems = await Promise.all(
+      items.map(async (item) => {
+        const trader = await User.find({ items: item._id });
+        return {
+          ...item.toObject(),
+          trader: trader,
+          tradeWith: trader,
+        };
+      })
+    );
 
     return res.status(200).json(
       new ApiResponseHandler(200, {
-        message: "Item list data retrieved successfully",
-        data: items,
+        message: `${
+          search ? "Search" : "Item"
+        } list data retrieved successfully`,
+        count: listItems.length,
+        itemList: listItems,
       })
     );
   }
 );
-export { addItem, itemList };
+
+// ---------------------------------------------------------------
+// ITEM DETAIL
+// ---------------------------------------------------------------
+const itemDetail = asyncHandler(
+  async (req: Request, res: Response): Promise<any> => {
+    const itemData = await Item.findById(req.params.id).populate(
+      "trader tradeWith",
+      "-password -refreshToken"
+    );
+
+    if (!itemData) throw new ApiErrorHandler(404, "Item not found");
+
+    return res.status(200).json(
+      new ApiResponseHandler(200, {
+        message: "Item data retrieved successfully",
+        itemDetail: itemData,
+      })
+    );
+  }
+);
+
+// ---------------------------------------------------------------
+// ITEM LIST BY CATEGORY
+// ---------------------------------------------------------------
+const itemsByCategory = asyncHandler(
+  async (req: Request, res: Response): Promise<any> => {
+    const catId = req.params.id;
+
+    const itemsListByCategory = await Item.find({ category: catId });
+
+    // Fetch users for each item and include them in the item object
+    const listItems = await Promise.all(
+      itemsListByCategory.map(async (item) => {
+        const users = await User.find({ items: item._id });
+        return {
+          ...item.toObject(),
+          users,
+        };
+      })
+    );
+
+    return res.status(200).json(
+      new ApiResponseHandler(200, {
+        message: "Item list data retrieved successfully",
+        count: listItems.length,
+        itemList: listItems,
+      })
+    );
+  }
+);
+
+export { addItem, itemList, itemDetail, itemsByCategory };

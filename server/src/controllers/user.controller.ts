@@ -128,13 +128,12 @@ const userList = asyncHandler(
       users.map(async (user) => {
         const items = await Item.find({ trader: user._id });
         return {
-          ...user.toObject(), // Convert Mongoose document to plain JavaScript object
+          ...user.toObject(),
           items,
         };
       })
     );
 
-    console.log(users);
     return res.status(200).json(
       new ApiResponseHandler(200, {
         message: "Users list data retrieved successfully",
