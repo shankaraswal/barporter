@@ -10,18 +10,31 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.6",
     "react": "^19.0.0-rc-df5f2736-20240712",
-    "react-dom": "^19.0.0-rc-df5f2736-20240712"
+    "react-dom": "^19.0.0-rc-df5f2736-20240712",
+    "react-hook-form": "^7.52.1",
+    "react-redux": "^9.1.2",
+    "react-router-dom": "^6.24.1",
+    "react-icons": "^5.2.1",
+    "redux": "^5.0.1",
+    "tailwind": "^4.0.0",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@types/node": "^20",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
     "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.5",
     "typescript": "^5.2.2",
     "vite": "^5.3.1"
   }
