@@ -5,7 +5,6 @@ import {
 } from "react-router-dom";
 
 import Layout from "../layouts/Layout";
-import UserProfile from "../pages/UserProfile";
 import { Home, Signup, Signin, Profile } from "../pages";
 
 export const routeConfig = {
@@ -34,7 +33,7 @@ export const routeConfig = {
     },
     {
       path: "/profile",
-      element: <UserProfile />,
+      element: <Profile />,
       name: "User Profile",
       secure: true,
     },
