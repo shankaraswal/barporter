@@ -5,8 +5,12 @@ import {
 } from "react-router-dom";
 
 import Layout from "../layouts/Layout";
+<<<<<<< Updated upstream
 import UserProfile from "../pages/UserProfile";
 import { Home, Signup, Signin, Profile } from "../pages";
+=======
+import { Home, Signup, Signin, Profile, ItemList } from "../pages";
+>>>>>>> Stashed changes
 
 export const routeConfig = {
   path: "/",
@@ -16,7 +20,7 @@ export const routeConfig = {
   children: [
     {
       path: "/",
-      element: <Signin />,
+      element: <Home />,
       name: "Home",
       secure: false,
     },
@@ -36,6 +40,12 @@ export const routeConfig = {
       path: "/profile",
       element: <UserProfile />,
       name: "User Profile",
+      secure: true,
+    },
+    {
+      path: "/list",
+      element: <ItemList />,
+      name: "Item List",
       secure: true,
     },
   ],

@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { Button, Input, Logo } from "../components/index";
 import LogoImg from "../assets/images/prof.jpeg";
-import { useNavigate } from "react-router-dom";
 
-const Home: React.FC = () => {
+function Profile() {
   const navigate = useNavigate();
+
   return (
     <>
       <div className="flex flex-row-reverse justify-between">
@@ -97,6 +99,6 @@ const Home: React.FC = () => {
       </div>
     </>
   );
-};
+}
 
-export default Home;
+export default Profile;
