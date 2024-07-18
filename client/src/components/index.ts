@@ -7,3 +7,5 @@ export { default as Input } from "./common/Input";
 export { default as Select } from "./common/Select";
 export { default as Button } from "./common/Button";
 export { default as LogoutBtn } from "./common/LogoutBtn";
+export { default as Rating } from "./common/Rating";
+export { default as Geolocation } from "./common/Geolocation";

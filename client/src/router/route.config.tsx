@@ -5,12 +5,7 @@ import {
 } from "react-router-dom";
 
 import Layout from "../layouts/Layout";
-<<<<<<< Updated upstream
-import UserProfile from "../pages/UserProfile";
-import { Home, Signup, Signin, Profile } from "../pages";
-=======
-import { Home, Signup, Signin, Profile, ItemList } from "../pages";
->>>>>>> Stashed changes
+import { Home, Signup, Signin, Profile, ItemList, ItemDetail } from "../pages";
 
 export const routeConfig = {
   path: "/",
@@ -38,7 +33,7 @@ export const routeConfig = {
     },
     {
       path: "/profile",
-      element: <UserProfile />,
+      element: <Profile />,
       name: "User Profile",
       secure: true,
     },
@@ -46,6 +41,12 @@ export const routeConfig = {
       path: "/list",
       element: <ItemList />,
       name: "Item List",
+      secure: true,
+    },
+    {
+      path: "/detail",
+      element: <ItemDetail />,
+      name: "Item Detail",
       secure: true,
     },
   ],

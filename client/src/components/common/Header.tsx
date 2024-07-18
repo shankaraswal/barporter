@@ -9,10 +9,7 @@ function Header() {
     <>
       <header className="py-3 shadow-2xl opacity-90 absolute top-0 left-0 right-0 z-15 shadow-gray-700 drop-shadow-2xl">
         <nav className="flex  max-w-[1440px] mx-auto">
-          <h1 className="text-[25px] flex rounded-2xl pr-6 bg-red-800 items-center font-semibold text-white gap-2">
-            <Logo width={"60px"} />
-            <span>Barter & Porter</span>
-          </h1>
+          <Logo baseWidth="80px" />
           <ul className="flex ml-auto  items-center">
             {routeConfig.children.map((nav: any) => (
               <li key={nav.name}>

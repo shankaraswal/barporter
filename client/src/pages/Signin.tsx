@@ -5,11 +5,9 @@ function Login() {
   const navigate = useNavigate();
 
   return (
-    <>
-      <div className="mb-2 flex justify-center">
-        <span className="inline-block w-full max-w-[100px]">
-          <Logo />
-        </span>
+    <div className="justify-center">
+      <div className="my-10 flex justify-center">
+        <Logo baseWidth="100px" />
       </div>
       <h2 className="text-center text-teal-800 text-2xl font-bold">
         Sign in to your account
@@ -40,7 +38,7 @@ function Login() {
           Sign in
         </Button>
       </div>
-    </>
+    </div>
   );
 }
 
