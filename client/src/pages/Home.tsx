@@ -1,5 +1,11 @@
 import React from "react";
+<<<<<<< Updated upstream
 import HeroImg from "../assets/images/1.jpeg";
+=======
+import LogoImg from "../assets/images/logo.png";
+import { useNavigate } from "react-router-dom";
+import { generateRandomNumber } from "../utils/helpers";
+>>>>>>> Stashed changes
 
 const Home: React.FC = () => {
   return (

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.6",
+    "axios": "^1.7.2",
     "react": "^19.0.0-rc-df5f2736-20240712",
     "react-dom": "^19.0.0-rc-df5f2736-20240712",
     "react-hook-form": "^7.52.1",
@@ -34,7 +35,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "postcss": "^8.4.39",
-    "tailwindcss": "^3.4.5",
+    "tailwindcss": "^3.4.6",
     "typescript": "^5.2.2",
     "vite": "^5.3.1"
   }
