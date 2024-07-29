@@ -8,8 +8,8 @@ function LogoutBtn() {
   };
   return (
     <button
-      className="inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full"
       onClick={logoutHandler}
+      className="mx-2 text-white text-2xl inline-bock py-2 px-6 duration-200 hover:bg-red-800 hover:border-red-100 rounded-md border-2 border-transparent"
     >
       Logout
     </button>
