@@ -1,5 +1,5 @@
 import React from "react";
-import { generateRandomNumber } from "../../utils";
+import { generateRandomNumber } from "../../utils/helpers";
 
 export default function Hero() {
   const randomNumber = generateRandomNumber(10, 99);

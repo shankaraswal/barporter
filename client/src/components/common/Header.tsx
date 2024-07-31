@@ -1,9 +1,11 @@
 import { useNavigate, NavLink } from "react-router-dom";
 import { LogoutBtn, Logo, Hero } from "../index";
-import { routeConfig } from "../../router/route.config";
+import { routeConfig } from "../../config/config.route";
+import useAuth from "../../../src/hooks/useAuth";
 
 function Header() {
   const navigate = useNavigate();
+  const { isLoggedIn } = useAuth();
 
   return (
     <>
@@ -21,9 +23,12 @@ function Header() {
                 </button>
               </li>
             ))}
-            <li>
-              <LogoutBtn />
-            </li>
+            {isLoggedIn && (
+              <li>
+                <LogoutBtn />
+              </li>
+            )}
+            <li></li>
           </ul>
         </nav>
       </header>
