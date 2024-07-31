@@ -1,7 +1,7 @@
 import React from "react";
 import LogoImg from "../assets/images/logo.png";
 import { useNavigate } from "react-router-dom";
-import { generateRandomNumber } from "../utils";
+import { generateRandomNumber } from "../utils/helpers";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();

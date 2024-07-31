@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "../components/common/Card";
-import { generateRandomNumbersArr } from "../utils";
+import { generateRandomNumbersArr } from "../utils/helpers";
 
 const ItemList = () => {
   const randomNumbers = generateRandomNumbersArr(10, 120, 100);
