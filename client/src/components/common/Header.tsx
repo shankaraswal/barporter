@@ -9,7 +9,7 @@ function Header() {
 
   return (
     <>
-      <header className="py-3 shadow-2xl opacity-90 absolute top-0 left-0 right-0 z-15 shadow-neutral-[400] drop-shadow-xl border-neutral-500 border-b">
+      <header className="py-3 shadow-2xl bg-stone-700 bg-opacity-50 absolute top-0 left-0 right-0 z-15 shadow-neutral-[400] drop-shadow-xl border-neutral-500 border-b">
         <nav className="flex  max-w-[1440px] mx-auto">
           <Logo baseWidth="80px" />
           <ul className="flex ml-auto  items-center">
