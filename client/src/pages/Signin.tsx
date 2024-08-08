@@ -28,21 +28,22 @@ function Login() {
       <div className="mb-10 flex justify-center">
         <Logo baseWidth="100px" />
       </div>
-      <div className=" bg-gray-300 p-20 text-gray-700 rounded-lg mt-10">
-        <h2 className="text-center text-3xl font-bold">
+      <div className=" bg-gray-300 p-20 rounded-lg mt-10">
+        <h2 className="text-center text-teal-700 text-3xl font-bold">
           Sign in to your account
         </h2>
-        <p className="mt-4 text-center text-xl">
+
+        <p className="mt-4 text-center text-neutral-600 text-xl">
           Don't have any account?
           <NavLink
             to="/signup"
-            className="ml-3 font-medium text-primary text-red-600 underline transition-all duration-200 hover:underline"
+            className="ml-3 font-medium text-primary text-red-700 underline transition-all duration-200 hover:underline"
           >
             Sign Up
           </NavLink>
         </p>
         <div className="space-y-8 text-2xl mt-10 flex-col">
-          <form onSubmit={handleUserLogin}>
+          <form onSubmit={handleUserLogin} className="space-y-8 text-teal-700">
             <Input
               label="Email: "
               placeholder="Enter your email"

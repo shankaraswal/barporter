@@ -28,7 +28,6 @@ export const loginUser = createAsyncThunk<
   Credentials,
   { rejectValue: string }
 >("auth/loginUser", async (credentials, { rejectWithValue }) => {
-  alert("asdfasd");
   try {
     const data = await authLoginService(credentials);
     console.log(data);
