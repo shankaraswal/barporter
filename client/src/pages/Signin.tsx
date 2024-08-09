@@ -17,11 +17,10 @@ function Login() {
   };
 
   useEffect(() => {
-    console.log("isLoggedIn", isLoggedIn);
     if (isLoggedIn) handleRedirect();
   }, [isLoggedIn]);
 
-  const handleRedirect = () => navigate("/profile");
+  const handleRedirect = () => navigate("/list");
 
   return (
     <div className="justify-center max-w-[500px] mx-auto">

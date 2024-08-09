@@ -23,7 +23,7 @@ function Signup() {
         <p className="mt-4 text-center text-neutral-600 text-xl">
           Already have an account?
           <NavLink
-            to="/signin"
+            to="/"
             className="ml-3 font-medium text-primary text-red-700 underline transition-all duration-200 hover:underline"
           >
             Sign In
