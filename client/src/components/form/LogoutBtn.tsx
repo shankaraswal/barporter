@@ -1,6 +1,6 @@
 import React, { useState, FormEvent, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import useAuth from "../../../src/hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 function LogoutBtn() {
   const { userLogout } = useAuth();

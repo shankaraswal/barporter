@@ -2,12 +2,12 @@ import React, { useState, FormEvent, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
-import useAuth from "../../../src/hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import avatarIcon from "../../assets/svg/avatar.svg";
 import userIcon from "../../assets/svg/user.svg";
 import dashboardIcon from "../../assets/svg/dashboard.svg";
 import logoutIcon from "../../assets/svg/logout.svg";
-import Avatar from "./Avatar";
+import Avatar from "../shared/Avatar";
 
 export const ProfileMenu = () => {
   const { userLogout, isLoggedIn, user } = useAuth();

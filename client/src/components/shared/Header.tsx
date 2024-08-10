@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { LogoutBtn, Logo, Hero } from "../index";
 import { routeConfig } from "../../config/ConfigRoutes";
-import useAuth from "../../../src/hooks/useAuth";
-import { generateRandomString } from "../../../src/utils/helpers";
-import { ProfileMenu } from "./ProfileMenu";
+import useAuth from "../../hooks/useAuth";
+import { generateRandomString } from "../../utils/helpers";
+import { ProfileMenu } from "../index";
 
 function Header() {
   const navigate = useNavigate();

@@ -1,70 +1,106 @@
-import React from "react";
-import LogoImg from "../assets/images/logo.png";
-import { useNavigate } from "react-router-dom";
-import { generateRandomNumber } from "../utils/helpers";
-
-const Home: React.FC = () => {
-  const navigate = useNavigate();
-  const randomNumber = generateRandomNumber(10, 99);
-
+const Home = () => {
   return (
     <>
-      <h2 className="text-6xl text-teal-900 mb-6 font-semibold">About</h2>
-      <div className="text-2xl mb-4 space-y-8">
-        <p>
-          John is a seasoned software engineer with over 10 years of experience
-          in web development. Throughout his career, he has mastered a wide
-          range of technologies and frameworks, enabling him to build robust and
-          scalable applications. His expertise spans both front-end and back-end
-          development, and he has a particular passion for creating seamless
-          user experiences and efficient, maintainable code.
-        </p>
+      <div className="relative overflow-hidden w-full mb-10">
+        <div className="relative ">
+          <div className="max-w-lg">
+            <h1 className="text-6xl font-semibold text-red-800 mb-10 leading-[80px]">
+              Summer styles are finally here
+            </h1>
+            <p>
+              You can easily customize this template to create a homepage for a
+              travel app. The design is simple and clean, with a header that
+              shows a large image background and a unique trip search bar. It
+              also includes sections for popular destinations, staff,
+              testimonials, highlights, FAQs, and more.
+            </p>
 
-        <p>
-          John's love for coding is matched by his enthusiasm for teaching and
-          mentoring. He has led numerous training sessions and workshops,
-          helping junior developers hone their skills and grow in their careers.
-          His approachable and patient demeanor makes him an excellent mentor,
-          and he takes great pride in seeing his mentees succeed.
-        </p>
-        <img
-          src={`https://mdbcdn.b-cdn.net/img/new/slides/0${randomNumber}.webp`}
-          className="h-auto max-w-full"
-          alt="..."
-        />
-        <p>
-          Beyond his professional work, John is an avid contributor to
-          open-source projects. He believes in the power of collaboration and
-          community in advancing technology and solving complex problems. His
-          contributions have earned him recognition and respect within the
-          developer community.
-        </p>
-        <p>
-          In his free time, John enjoys exploring new technologies, attending
-          tech meetups, and sharing his knowledge through blog posts and
-          speaking engagements. His dedication to continuous learning and
-          passion for the craft of software development make him a valuable
-          asset to any team.
-        </p>
+            <p>
+              An eye catching design, perfect for companies in the IT sector,
+              gadget companies or AI. It features a video background in the
+              header guaranteed to draw attention, a special typeface as an
+              accent as well as all of the sections you would need to present
+              your product to the world.
+            </p>
+            <p>
+              John is a seasoned software engineer with over 10 years of
+              experience in web development. Throughout his career, he has
+              mastered a wide range of technologies and frameworks, enabling him
+              to build robust and scalable applications. His expertise spans
+              both front-end and back-end development, and he has a particular
+              passion for creating seamless user experiences and efficient,
+              maintainable code.
+            </p>
+            <p>
+              Beyond his professional work, John is an avid contributor to
+              open-source projects. He believes in the power of collaboration
+              and community in advancing technology and solving complex
+              problems.
+            </p>
+          </div>
+          <div className="mt-10">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none inset-y-0 mx-auto w-full max-w-7xl"
+            >
+              <div className="absolute transform sm:left-1/2 sm:top-0 sm:translate-x-8 lg:left-1/2 lg:top-1/2 lg:-translate-y-1/2 translate-x-8">
+                <div className="flex items-center justify-center overflow-hidden space-x-1 z-50">
+                  <div className="grid flex-shrink-0 grid-cols-1 space-y-1">
+                    <div className="h-64 w-48 overflow-hidden rounded-xl ">
+                      <img
+                        src={`https://mdbcdn.b-cdn.net/img/new/slides/100.webp`}
+                        className="h-full w-full object-cover object-center "
+                      />
+                    </div>
+                    <div className="h-64 w-48 overflow-hidden rounded-xl ">
+                      <img
+                        src={`https://mdbcdn.b-cdn.net/img/new/slides/101.webp`}
+                        className="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid flex-shrink-0 grid-cols-1 space-y-1">
+                    <div className="h-64 w-48 overflow-hidden rounded-xl ">
+                      <img
+                        src={`https://mdbcdn.b-cdn.net/img/new/slides/104.webp`}
+                        className="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                    <div className="h-64 w-48 overflow-hidden rounded-xl ">
+                      <img
+                        src={`https://mdbcdn.b-cdn.net/img/new/slides/209.webp`}
+                        className="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                    <div className="h-64 w-48 overflow-hidden rounded-xl cursor-pointer">
+                      <img
+                        src={`https://mdbcdn.b-cdn.net/img/new/slides/090.webp`}
+                        className="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid flex-shrink-0 grid-cols-1 space-y-1">
+                    <div className="h-64 w-48 overflow-hidden rounded-xl ">
+                      <img
+                        src={`https://mdbcdn.b-cdn.net/img/new/slides/076.webp`}
+                        className="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                    <div className="h-64 w-48 overflow-hidden rounded-xl ">
+                      <img
+                        src={`https://mdbcdn.b-cdn.net/img/new/slides/208.webp`}
+                        className="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <button
-        className="mt-8 bg-gray-400 text-white py-2 px-4 rounded hover:bg-teal-600"
-        onClick={() => {
-          navigate(-1);
-        }}
-      >
-        Back
-      </button>
-      <button className="ml-4 mt-8 bg-teal-700 text-white py-2 px-4 rounded hover:bg-teal-600">
-        Edit Profile
-      </button>
-
-      <button
-        onClick={() => navigate("/list")}
-        className="ml-4 mt-8 bg-red-700 text-white py-2 px-4 rounded hover:bg-red-600"
-      >
-        Item List
-      </button>
     </>
   );
 };

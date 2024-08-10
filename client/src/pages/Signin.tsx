@@ -3,7 +3,7 @@ import { Link, useNavigate, NavLink } from "react-router-dom";
 import { Button, Input, Logo } from "../components";
 import useAuth from "../hooks/useAuth";
 
-function Login() {
+function Signin() {
   const navigate = useNavigate();
   const { userLogin, loading, error, isLoggedIn } = useAuth();
   const [credentials, setCredentials] = useState({
@@ -75,4 +75,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signin;

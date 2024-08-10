@@ -7,7 +7,7 @@ const Layout = () => {
      from-stone-100 to-stone-400 min-h-screen"
     >
       <Header />
-      <div className="mx-auto w-full min-h-[680px]  max-w-[1440px] bg-neutral-100 rounded-xl p-20 mb-32 -mt-60">
+      <div className="mx-auto w-full min-h-60 max-w-[1440px] bg-neutral-100 rounded-xl p-20 mb-32 -mt-[700px]">
         <Outlet />
       </div>
       <Footer />

@@ -6,15 +6,7 @@ import {
 
 import Layout from "../app/App";
 import ProtectedRoute from "./ProtectedRoutes";
-import {
-  Home,
-  Signup,
-  Signin,
-  Profile,
-  ItemList,
-  ItemDetail,
-  Pnf,
-} from "../pages";
+import { Home, Signup, Signin, Profile, Plp, PlpA, Pdp, Pnf } from "../pages";
 
 export const routeConfig = {
   path: "/",
@@ -51,7 +43,7 @@ export const routeConfig = {
     {
       path: "/profile",
       slug: "profile",
-      element: <Profile />,
+      element: <PlpA />,
       name: "User Profile",
       secure: true,
       navpart: true,
@@ -59,7 +51,7 @@ export const routeConfig = {
     {
       path: "/list",
       slug: "list",
-      element: <ItemList />,
+      element: <Plp />,
       name: "Item List",
       secure: true,
       navpart: true,
@@ -67,7 +59,7 @@ export const routeConfig = {
     {
       path: "/detail",
       slug: "detail",
-      element: <ItemDetail />,
+      element: <Pdp />,
       name: "Item Detail",
       secure: true,
       navpart: false,

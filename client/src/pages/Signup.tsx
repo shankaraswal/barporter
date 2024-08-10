@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Button, Input, Logo } from "../components/index";
 import { useDispatch } from "react-redux";
-import "./index.css";
+import "./pages.css";
 
 function Signup() {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ function Signup() {
 
   return (
     <div className="justify-center">
-      <div className="my-10 flex justify-center">
+      <div className="mb-10 flex justify-center">
         <Logo baseWidth="100px" />
       </div>
       <div className="bg-gray-300 p-20 rounded-lg mt-10">
@@ -32,7 +32,7 @@ function Signup() {
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
         <div className="w-full h-full ">
           <form className="flex flex-nowrap gap-10 p-10 my-8">
-            <div className="w-full lg:w-1/2 space-y-8 shan">
+            <div className="w-full lg:w-1/2 space-y-8 custom-signup-class">
               <Input
                 label="Full Name: "
                 placeholder="Enter your full name"
@@ -65,7 +65,7 @@ function Signup() {
                 })}
               />
             </div>
-            <div className="w-full lg:w-1/2 space-y-8 shan">
+            <div className="w-full lg:w-1/2 space-y-8 custom-signup-class">
               <Input
                 label="Email: "
                 placeholder="Enter your email"
