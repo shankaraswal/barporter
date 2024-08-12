@@ -1,20 +1,19 @@
 import React, { useRef, useCallback, useState, useEffect } from "react";
-import { useGetProductListQuery } from "../features/products/productService";
-import { PCard } from "../components/index";
-import { ProductType } from "@/src/features/products/product.types";
+import { useGetProductListQuery } from "../../features/products/productService";
+import { PlpCardB } from "../../components/index";
+import { ProductType } from "../../features/products/product.types";
 
-const InfiniteScroll = () => {
-  const [page, setPage] = useState(1);
+const PlpGridB = ({ colors }: { colors: string[] }) => {
+  const [page, setPage] = useState(0);
   const [products, setProducts] = useState<ProductType[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
   const loaderRef = useRef(null);
 
   const { data, error, isLoading } = useGetProductListQuery(
-    { limit: 12, skip: (page - 1) * 10 },
-    { skip: !hasMore }
+    { limit: 12, skip: page > 0 ? (page - 1) * 12 : 0 },
+    { skip: false }
   );
-
   const handleLoadMore = useCallback(
     (entries: any[]) => {
       const target = entries[0];
@@ -28,7 +27,7 @@ const InfiniteScroll = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(handleLoadMore, {
-      threshold: 1.0,
+      threshold: 0.5,
     });
     if (loaderRef.current) {
       observer.observe(loaderRef.current);
@@ -43,7 +42,7 @@ const InfiniteScroll = () => {
   useEffect(() => {
     if (data && data.products && data.products.length > 0) {
       setProducts((prevProducts) => [...prevProducts, ...data.products]);
-      if (data.products.length < 10) {
+      if (data.products.length < 12) {
         setHasMore(false);
       }
       setIsFetching(false);
@@ -51,24 +50,31 @@ const InfiniteScroll = () => {
   }, [data]);
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="grid grid-cols-2">
+    <>
+      <section className="p-5  grid grid-cols-3  gap-10 items-start ">
         {error && <p>Error loading data.</p>}
         {products.length === 0 && !error && !isFetching && (
           <p>No products found.</p>
         )}
-        {products.map((product: ProductType) => (
-          <PCard key={product.id} product={product} />
-        ))}
-      </div>
+        {products.map((product: ProductType, index: number) => {
+          const bgColorClass = colors[index % colors.length];
+          return (
+            <PlpCardB
+              key={product.id}
+              product={product}
+              bgcolor={bgColorClass}
+            />
+          );
+        })}
+      </section>
       <div
         ref={loaderRef}
-        style={{ height: "20px", backgroundColor: "transparent" }}
+        className="bg-neutral-100 w-full h-64 flex justify-center items-center"
       >
         {isFetching && <p>Loading more...</p>}
       </div>
-    </div>
+    </>
   );
 };
 
-export default InfiniteScroll;
+export default PlpGridB;

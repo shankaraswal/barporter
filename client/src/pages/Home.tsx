@@ -1,8 +1,12 @@
+import { generateRandomNumber } from "../utils/helpers";
+
 const Home = () => {
+  const randomNumber = generateRandomNumber(10, 99);
+
   return (
     <>
       <div className="relative overflow-hidden w-full mb-10">
-        <div className="relative ">
+        <section className="relative overflow-hidden bg-white">
           <div className="max-w-lg">
             <h1 className="text-6xl font-semibold text-red-800 mb-10 leading-[80px]">
               Summer styles are finally here
@@ -99,7 +103,49 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
+        </section>
+
+        <section
+          className="mt-24 bg-neutral-800 bg-blend-hard-light rounded-2xl"
+          style={{
+            backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/0${randomNumber}.webp')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center center",
+          }}
+        >
+          <div className="flex flex-col px-4 text-center py-24 min-h-[600px] justify-center ">
+            <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
+              We invest in the world’s potential
+            </h1>
+            <p className="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">
+              Here at Flowbite we focus on markets where technology, innovation,
+              and capital can unlock long-term value and drive economic growth.
+            </p>
+            <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
+              <button className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-900 dark:focus:ring-red-900">
+                Get started
+                <svg
+                  className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9"
+                  />
+                </svg>
+              </button>
+              <button className="inline-flex justify-center hover:text-neutral-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-neutral-100 focus:ring-4 focus:ring-neutral-400">
+                Learn more
+              </button>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );
