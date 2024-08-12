@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-signup-class{
+    label{
+        @apply block text-teal-800 text-xl font-semibold mb-2;
+    }
+    input{
+        @apply border border-neutral-400 rounded p-4 focus:border-teal-900 text-xl;
+    }
+}

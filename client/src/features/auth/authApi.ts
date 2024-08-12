@@ -8,13 +8,11 @@ interface LoginCredentials {
 interface RegisterData {
   email: string;
   password: string;
-  // Add other registration fields here
 }
 
 interface User {
   id: string;
   email: string;
-  // Add other user fields here
 }
 
 export const authLoginService = async (
@@ -22,7 +20,6 @@ export const authLoginService = async (
 ): Promise<User> => {
   try {
     const response = await apiClient.post<User>("/users/login", credentials);
-
     return response.data;
   } catch (error) {
     throw error;

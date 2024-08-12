@@ -33,3 +33,17 @@ export const generateRandomNumbersArr = (
   // Return the first `count` elements
   return rangeArray.slice(0, count);
 };
+export const generateRandomString = (minLength = 10, maxLength = 100) => {
+  const length =
+    Math.floor(Math.random() * (maxLength - minLength + 1)) + minLength;
+  const charset =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let randomString = "";
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * charset.length);
+    randomString += charset[randomIndex];
+  }
+
+  return randomString;
+};

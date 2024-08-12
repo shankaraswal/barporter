@@ -1,17 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Logo from "./Logo";
 
 const Footer = () => {
   return (
-    <footer className="text-center">
+    <footer className="text-center fixed w-full bg-neutral-100 bottom-0">
       <div className=" bg-neutral-100 h-full">
         <div className="w-[1440px] mx-auto">
-          <div className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between">
+          <div className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between bg-neutral-300 rounded-b-xl">
             <div className="mr-12 hidden lg:block">
               <span>Get connected with us on social networks:</span>
             </div>
-            {/* <!-- Social network icons container --> */}
             <div className="flex justify-center">
               <a className="mr-6 text-neutral-600 dark:text-neutral-200">
                 <svg

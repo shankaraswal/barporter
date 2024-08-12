@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, registerUser, logout } from "../features/auth/authSlice";
 import type { RootState, AppDispatch } from "../app/store";
+
 const useAuth = () => {
   const dispatch: AppDispatch = useDispatch();
   const { user, isLoggedIn, loading, error } = useSelector(
@@ -16,7 +17,7 @@ const useAuth = () => {
   };
 
   const userLogout = () => {
-    console.log(" click user logout button");
+    console.log("User logged-out");
     dispatch(logout());
   };
 

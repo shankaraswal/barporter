@@ -1,7 +1,7 @@
 import React from "react";
 import { MoreInfo, Reviews } from "../components";
 
-const ItemDetail = () => {
+const Pdp = () => {
   return (
     <>
       <h2 className="text-6xl text-teal-900 mb-6 font-semibold">Item Detail</h2>
@@ -370,4 +370,4 @@ const ItemDetail = () => {
   );
 };
 
-export default ItemDetail;
+export default Pdp;

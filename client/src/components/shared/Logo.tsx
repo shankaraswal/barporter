@@ -2,7 +2,7 @@ import React from "react";
 import LogoImg from "../../assets/images/logo.png";
 function Logo({ baseWidth = "100px" }: { baseWidth?: string }) {
   return (
-    <div className="text-[25px] flex flex-row rounded-2xl  bg-red-800 items-center font-semibold text-white">
+    <div className="text-xl flex flex-row rounded-2xl  bg-red-800 items-center font-semibold text-white">
       <img
         src={LogoImg}
         className="rounded-s-xl"

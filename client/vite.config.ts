@@ -4,4 +4,7 @@ import react from "@vitejs/plugin-react";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    hmr: true, // This is usually the default, but you can explicitly set it
+  },
 });

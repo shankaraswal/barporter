@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Button, Input, Logo, Rating, Geolocation } from "../components/index";
 import LogoImg from "../assets/images/prof.jpeg";
+import useAuth from "../hooks/useAuth";
 
 function Profile() {
   const navigate = useNavigate();
