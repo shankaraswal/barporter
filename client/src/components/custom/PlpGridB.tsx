@@ -11,7 +11,7 @@ const PlpGridB = ({ colors }: { colors: string[] }) => {
   const loaderRef = useRef(null);
 
   const { data, error, isLoading } = useGetProductListQuery(
-    { limit: 12, skip: page > 0 ? (page - 1) * 12 : 0 },
+    { limit: 15, skip: page > 0 ? (page - 1) * 15 : 1 },
     { skip: false }
   );
   const handleLoadMore = useCallback(
@@ -51,7 +51,7 @@ const PlpGridB = ({ colors }: { colors: string[] }) => {
 
   return (
     <>
-      <section className="p-5  grid grid-cols-3  gap-10 items-start ">
+      <section className="p-5  grid grid-cols-3 gap-10 items-start">
         {error && <p>Error loading data.</p>}
         {products.length === 0 && !error && !isFetching && (
           <p>No products found.</p>
@@ -69,7 +69,7 @@ const PlpGridB = ({ colors }: { colors: string[] }) => {
       </section>
       <div
         ref={loaderRef}
-        className="bg-neutral-100 w-full h-64 flex justify-center items-center"
+        className="bg-neutral-100 w-full h-[500px] flex justify-center items-center"
       >
         {isFetching && <p>Loading more...</p>}
       </div>

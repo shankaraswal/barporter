@@ -9,23 +9,23 @@ const Plp = () => {
     "orange",
     // "amber",
     "yellow",
+    "stone",
     "lime",
     "green",
+    "neutral",
     "emerald",
     "teal",
+    "zinc",
     "cyan",
     "sky",
+    "gray",
     "blue",
+    "pink",
     "indigo",
     // "violet",
     "purple",
-    // "fuchsia",
-    "pink",
-    // "rose",
-    "stone",
-    "neutral",
-    // "zinc",
-    "gray",
+    "rose",
+    "fuchsia",
     "slate",
   ];
   return (
@@ -47,11 +47,13 @@ const Plp = () => {
           </button>
         </div>
       </div>
-      {activeView === "grid_a" ? (
-        <PlpGridA colors={colors} />
-      ) : (
-        <PlpGridB colors={colors} />
-      )}
+      <div className="">
+        {activeView === "grid_a" ? (
+          <PlpGridB colors={colors} />
+        ) : (
+          <PlpGridA colors={colors} />
+        )}
+      </div>
     </>
   );
 };
