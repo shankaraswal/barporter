@@ -11,9 +11,10 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.6",
-    "react": "^19.0.0-rc-df5f2736-20240712",
-    "react-dom": "^19.0.0-rc-df5f2736-20240712",
-    "react-hook-form": "^7.52.1",
+    "axios": "^1.7.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.52.2",
     "react-icons": "^5.2.1",
     "react-redux": "^9.1.2",
     "react-router-dom": "^6.24.1",
