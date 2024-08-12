@@ -23,7 +23,7 @@ const Pagination = ({
     <div className="flex justify-center mt-4 space-x-2">
       <button
         onClick={goToFirstPage}
-        className="px-4 py-2 border bg-white text-blue-500"
+        className="px-4 py-2 border bg-white text-neutral-500"
         disabled={currentPage === 1}
       >
         First
@@ -31,7 +31,7 @@ const Pagination = ({
 
       <button
         onClick={goToPreviousPage}
-        className="px-4 py-2 border bg-white text-blue-500"
+        className="px-4 py-2 border bg-white text-neutral-500"
         disabled={currentPage === 1}
       >
         Previous
@@ -43,8 +43,8 @@ const Pagination = ({
           onClick={() => onPageChange(page)}
           className={`px-4 py-2 border ${
             page === currentPage
-              ? "bg-blue-500 text-white"
-              : "bg-white text-blue-500"
+              ? "bg-neutral-500 text-white"
+              : "bg-white text-neutral-500"
           }`}
         >
           {page}
@@ -53,7 +53,7 @@ const Pagination = ({
 
       <button
         onClick={goToNextPage}
-        className="px-4 py-2 border bg-white text-blue-500"
+        className="px-4 py-2 border bg-white text-neutral-500"
         disabled={currentPage === totalPages}
       >
         Next
@@ -61,7 +61,7 @@ const Pagination = ({
 
       <button
         onClick={goToLastPage}
-        className="px-4 py-2 border bg-white text-blue-500"
+        className="px-4 py-2 border bg-white text-neutral-500"
         disabled={currentPage === totalPages}
       >
         Last

@@ -34,7 +34,12 @@ const PlpCardB = React.forwardRef<
           {product.title}
         </h5>
         <p className="mb-5 text-ellipsis line-clamp-2">{product.description}</p>
-        <h4 className="text-3xl my-10 text-red-800 font-semibold">
+        <p className="mt-10 text-lg font-bold text-gray-500">
+          <span className="line-through">
+            £{(product.price + 20).toFixed(2)}
+          </span>
+        </p>
+        <h4 className="text-3xl mb-10 text-red-800 font-semibold">
           £{product.price}
         </h4>
         <div className="flex gap-5 flex-row justify-center">

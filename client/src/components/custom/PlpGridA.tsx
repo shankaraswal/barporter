@@ -63,7 +63,12 @@ const PlpGridA = ({ colors }: { colors: any }) => {
                       <p className="mb-3 font-normal text-neutral-700 text-ellipsis line-clamp-3 dark:text-neutral-400">
                         {product.description}
                       </p>
-                      <h4 className="text-3xl my-5 text-red-800 font-semibold">
+                      <p className="mt-10 text-lg font-bold text-gray-500">
+                        <span className="line-through">
+                          £{(product.price + 20).toFixed(2)}
+                        </span>
+                      </p>
+                      <h4 className="text-3xl mb-5 text-red-800 font-semibold">
                         £{product.price}
                       </h4>
                       <div className="flex flex-row justify-between items-center gap-2">
