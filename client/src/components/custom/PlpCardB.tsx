@@ -9,7 +9,7 @@ const PlpCardB = forwardRef(
     return (
       <section
         onClick={() => navigate(`/product/${product.id}`)}
-        className={`p-4 border hover:border-neutral-300 text-center transform duration-500 hover:-translate-y-5 cursor-pointer bg-opacity-5 hover:bg-opacity-10 bg-${bgcolor}-500`}
+        className={`p-5 pb-10 border hover:border-neutral-300 text-center transform duration-500 hover:-translate-y-5 cursor-pointer bg-opacity-5 hover:bg-opacity-10 bg-${bgcolor}-500`}
       >
         <span className="absolute flex top-5 right-5 border-2 border-gray-300 bg-white w-10 h-10 p-1 text-center rounded-full justify-center items-center">
           <AddToWishList bgcolor="red" />

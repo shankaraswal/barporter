@@ -51,7 +51,7 @@ const PlpGridB = ({ colors }: { colors: string[] }) => {
 
   return (
     <>
-      <section className="p-5  grid grid-cols-3 gap-10 items-start">
+      <section className="grid grid-cols-3 gap-10 items-start">
         {error && <p>Error loading data.</p>}
         {products.length === 0 && !error && !isFetching && (
           <p>No products found.</p>
