@@ -3,9 +3,8 @@ export { default as Reviews } from "./custom/Reviews";
 export { default as Rating } from "./custom/Rating";
 export { default as Geolocation } from "./custom/Geolocation";
 export { default as MoreInfo } from "./custom/MoreInfo";
-export { default as PlpCardB } from "./custom/PlpCardB";
 export { default as Pagination } from "./custom/Pagination";
-export { ProfileMenu } from "./custom/ProfileMenu";
+export { default as ProfileMenu } from "./custom/ProfileMenu";
 export { default as CartIcon } from "./custom/CartIcon";
 export { default as AddToWishList } from "./custom/AddToWishList";
 

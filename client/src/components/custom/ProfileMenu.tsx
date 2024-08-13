@@ -9,7 +9,7 @@ import dashboardIcon from "../../assets/svg/dashboard.svg";
 import logoutIcon from "../../assets/svg/logout.svg";
 import Avatar from "../shared/Avatar";
 
-export const ProfileMenu = () => {
+const ProfileMenu = () => {
   const { userLogout, isLoggedIn, user } = useAuth();
   const [isDdOpen, setIsDdOpen] = useState(true);
   const navigate = useNavigate();
@@ -83,3 +83,4 @@ export const ProfileMenu = () => {
     </div>
   );
 };
+export default ProfileMenu;

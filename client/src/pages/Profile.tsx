@@ -20,9 +20,7 @@ function Profile() {
           }}
         ></div>
         <div className="text-2xl flex-col">
-          <h2 className="text-4xl text-teal-900 mb-6 font-semibold">
-            John Doe
-          </h2>
+          <h2 className="text-4xl text-teal-900 font-semibold">John Doe</h2>
           <p>Software Engineer</p>
           <h3 className="mt-10 mb-4 text-2xl font-semibold">
             Contact Information

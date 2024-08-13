@@ -27,9 +27,9 @@ const Clp = () => {
 
   return (
     <section className="justify-between items-center">
-      <h2 className="text-4xl text-teal-900 mb-10 font-semibold">
-        Category List
-      </h2>
+      <section className="flex flex-row justify-between items-center mb-6">
+        <h2 className="text-4xl text-teal-900 font-semibold">Category List</h2>
+      </section>
       <div className="p-5 md:p-0 grid grid-cols-4 xs:grid-cols-1: gap-10 items-start ">
         {categoryList &&
           categoryList.length > 0 &&
@@ -40,17 +40,19 @@ const Clp = () => {
               <div
                 key={index}
                 onClick={() => navigate(`/products/category/${category.slug}`)}
-                className={`p-4 border hover:border-neutral-300 items-center transform duration-500 hover:-translate-y-5 cursor-pointer rounded-2xl bg-opacity-5 hover:bg-opacity-20 bg-${bgcolor}-500 text-neutral-700 hover:text-neutral-950 text-center pt-8`}
+                className={`p-4 border hover:border-neutral-300 items-center transform duration-500 hover:-translate-y-5 cursor-pointer bg-opacity-5 hover:bg-opacity-20 bg-${bgcolor}-500 text-black hover:underline text-center pt-8`}
               >
                 <figure className="w-full">
                   <img
                     src={`https://mdbcdn.b-cdn.net/img/new/standard/nature/0${randNum}.webp`}
                     alt={category.name}
-                    className="object-cover w-full h-full border-neutral-200 border-4"
+                    className="object-cover w-full"
                   />
                 </figure>
 
-                <h5 className="mt-6 mb-3 text-2xl">{category.name}</h5>
+                <h5 className="mt-6 mb-3 font-medium tracking-wideer text-2xl ">
+                  {category.name}
+                </h5>
               </div>
             );
           })}

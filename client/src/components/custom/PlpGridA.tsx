@@ -5,18 +5,13 @@ import {
   useGetProductByCategoryQuery,
   useSearchProductsQuery,
 } from "../../features/products/productService";
-import {
-  Pagination,
-  CartIcon,
-  Rating,
-  AddToWishList,
-} from "../../components/index";
+import { Pagination, CartIcon, Rating, AddToWishList } from "../../components";
 import { ProductType } from "../../features/products/product.types";
-import { colors } from "../../constants/index";
+import { colors } from "../../constants";
 
 const PlpGridA = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const limit = 24;
+  const limit = 30;
   const skip = (currentPage - 1) * limit;
   const navigate = useNavigate();
   const location = useLocation();
@@ -91,14 +86,14 @@ const PlpGridA = () => {
                       <h5 className="mb-2 text-xl font-semibold text-ellipsis line-clamp-1">
                         {product.title}
                       </h5>
-                      <span
-                        className="block mb-4 text-md  tracking-wider text-red-600 hover:text-red-900 capitalize hover:underline"
+                      <p
+                        className="mb-4 text-md  tracking-wider text-red-600 hover:text-red-900 capitalize hover:underline"
                         onClick={() =>
                           navigate(`/products/category/${product.category}`)
                         }
                       >
                         {product.category}
-                      </span>
+                      </p>
 
                       <p className="mb-3 font-normal text-black text-ellipsis line-clamp-2 dark:text-neutral-400">
                         {product.description}

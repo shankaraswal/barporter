@@ -8,9 +8,7 @@ const Plp = () => {
   return (
     <>
       <section className="flex flex-row justify-between items-center mb-6">
-        <h2 className="text-4xl text-teal-900 mb-6 font-semibold">
-          Product List
-        </h2>
+        <h2 className="text-4xl text-teal-900 font-semibold">Product List</h2>
         <div className="gap-2 flex">
           <button
             onClick={() => setActiveView("grid_a")}
@@ -26,10 +24,7 @@ const Plp = () => {
           </button>
         </div>
       </section>
-      {/* <PlpGridA /> */}
-      <div className="">
-        {activeView === "grid_a" ? <PlpGridA /> : <PlpGridB />}
-      </div>
+      {activeView === "grid_a" ? <PlpGridB /> : <PlpGridA />}
     </>
   );
 };

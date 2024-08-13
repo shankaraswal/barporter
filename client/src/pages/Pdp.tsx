@@ -4,9 +4,7 @@ import { MoreInfo, Reviews } from "../components";
 const Pdp = () => {
   return (
     <>
-      <h2 className="text-4xl text-teal-900 mb-6 font-semibold">
-        Product Detail
-      </h2>
+      <h2 className="text-4xl text-teal-900 font-semibold">Product Detail</h2>
       <div className="">
         <section className="relative ">
           <div className="flex flex-row gap-10 mb-10">
