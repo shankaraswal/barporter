@@ -5,3 +5,4 @@ export { default as Signup } from "./Signup";
 export { default as Profile } from "./Profile";
 export { default as Plp } from "./Plp";
 export { default as Pdp } from "./Pdp";
+export { default as Clp } from "./Clp";

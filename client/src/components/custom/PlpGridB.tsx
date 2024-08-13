@@ -2,8 +2,9 @@ import React, { useRef, useCallback, useState, useEffect } from "react";
 import { useGetProductListQuery } from "../../features/products/productService";
 import { PlpCardB } from "../../components/index";
 import { ProductType } from "../../features/products/product.types";
+import { colors } from "../../constants/index";
 
-const PlpGridB = ({ colors }: { colors: string[] }) => {
+const PlpGridB = () => {
   const [page, setPage] = useState(0);
   const [products, setProducts] = useState<ProductType[]>([]);
   const [hasMore, setHasMore] = useState(true);

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ProductListType, ProductType } from "./product.types";
+import { CategoryType, ProductListType, ProductType } from "./product.types";
 
 export const productService = createApi({
   reducerPath: "productService",
@@ -16,7 +16,7 @@ export const productService = createApi({
     getProduct: builder.query<ProductType, string>({
       query: (pid: string) => `products/${pid}`,
     }),
-    getProductCategories: builder.query<string[], void>({
+    getProductCategories: builder.query<CategoryType[], void>({
       query: () => `products/categories`,
     }),
     getProductByCategory: builder.query<ProductType[], string>({

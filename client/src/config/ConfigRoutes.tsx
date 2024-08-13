@@ -6,7 +6,7 @@ import {
 
 import Layout from "../app/App";
 import ProtectedRoute from "./ProtectedRoutes";
-import { Home, Signup, Signin, Profile, Plp, Pdp, Pnf } from "../pages";
+import { Home, Signup, Signin, Profile, Plp, Pdp, Pnf, Clp } from "../pages";
 
 export const routeConfig = {
   path: "/",
@@ -49,10 +49,18 @@ export const routeConfig = {
       navpart: true,
     },
     {
+      path: "/categories",
+      slug: "categories",
+      element: <Clp />,
+      name: "Categories",
+      secure: false,
+      navpart: true,
+    },
+    {
       path: "/list",
       slug: "list",
       element: <Plp />,
-      name: "Item List",
+      name: "Products",
       secure: false,
       navpart: true,
     },

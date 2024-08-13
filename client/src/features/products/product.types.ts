@@ -44,3 +44,9 @@ export type ProductListType = {
   skip: number;
   limit: number;
 };
+
+export type CategoryType = {
+  slug: string;
+  name: string;
+  url: string;
+};

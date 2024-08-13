@@ -8,8 +8,9 @@ import {
   AddToWishList,
 } from "../../components/index";
 import { ProductType } from "../../features/products/product.types";
+import { colors } from "../../constants/index";
 
-const PlpGridA = ({ colors }: { colors: string[] }) => {
+const PlpGridA = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 24;
   const skip = (currentPage - 1) * limit;
