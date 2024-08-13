@@ -4,30 +4,7 @@ import PlpGridB from "../components/custom/PlpGridB";
 
 const Plp = () => {
   const [activeView, setActiveView] = useState("grid_a");
-  const colors = [
-    "red",
-    "orange",
-    // "amber",
-    "yellow",
-    "stone",
-    "lime",
-    "green",
-    "neutral",
-    "emerald",
-    "teal",
-    "zinc",
-    "cyan",
-    "sky",
-    "gray",
-    "blue",
-    "pink",
-    "indigo",
-    // "violet",
-    "purple",
-    "rose",
-    "fuchsia",
-    "slate",
-  ];
+
   return (
     <>
       <section className="flex flex-row justify-between items-center mb-6">
@@ -49,6 +26,7 @@ const Plp = () => {
           </button>
         </div>
       </section>
+      {/* <PlpGridA /> */}
       <div className="">
         {activeView === "grid_a" ? <PlpGridA /> : <PlpGridB />}
       </div>

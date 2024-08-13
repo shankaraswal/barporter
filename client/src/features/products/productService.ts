@@ -19,8 +19,20 @@ export const productService = createApi({
     getProductCategories: builder.query<CategoryType[], void>({
       query: () => `products/categories`,
     }),
-    getProductByCategory: builder.query<ProductType[], string>({
-      query: (cat: string) => `products/category/${cat}`,
+
+    getProductByCategory: builder.query<
+      ProductListType,
+      { category: string; limit: number; skip: number }
+    >({
+      query: ({ category, limit, skip }) =>
+        `products/category/${category}?limit=${limit}&skip=${skip}`,
+    }),
+    searchProducts: builder.query<
+      ProductListType,
+      { query: string; limit: number; skip: number }
+    >({
+      query: ({ query, limit, skip }) =>
+        `products/search?q=${query}&limit=${limit}&skip=${skip}`,
     }),
   }),
 });
@@ -30,4 +42,5 @@ export const {
   useGetProductQuery,
   useGetProductCategoriesQuery,
   useGetProductByCategoryQuery,
+  useSearchProductsQuery,
 } = productService;

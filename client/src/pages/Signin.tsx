@@ -20,7 +20,7 @@ function Signin() {
     if (isLoggedIn) handleRedirect();
   }, [isLoggedIn]);
 
-  const handleRedirect = () => navigate("/list");
+  const handleRedirect = () => navigate("/products");
 
   return (
     <div className="justify-center max-w-[500px] mx-auto">

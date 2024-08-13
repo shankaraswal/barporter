@@ -94,7 +94,7 @@ function Profile() {
         </button>
 
         <button
-          onClick={() => navigate("/list")}
+          onClick={() => navigate("/products")}
           className="ml-4 mt-8 bg-red-700 text-white py-2 px-4 rounded hover:bg-red-600"
         >
           Item List

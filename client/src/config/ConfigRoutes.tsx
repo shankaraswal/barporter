@@ -7,6 +7,7 @@ import {
 import Layout from "../app/App";
 import ProtectedRoute from "./ProtectedRoutes";
 import { Home, Signup, Signin, Profile, Plp, Pdp, Pnf, Clp } from "../pages";
+// import PlpGridA from "../components/custom/PlpGridA";
 
 export const routeConfig = {
   path: "/",
@@ -57,12 +58,28 @@ export const routeConfig = {
       navpart: true,
     },
     {
-      path: "/list",
-      slug: "list",
+      path: "/products",
+      slug: "products",
       element: <Plp />,
       name: "Products",
       secure: false,
       navpart: true,
+    },
+    {
+      path: "/products/category/:category",
+      slug: "category-products",
+      element: <Plp />, // Category-specific product listing
+      name: "Category Products",
+      secure: false,
+      navpart: false,
+    },
+    {
+      path: "/products/search",
+      slug: "search-products",
+      element: <Plp />, // Search-specific product listing
+      name: "Search Products",
+      secure: false,
+      navpart: false,
     },
     {
       path: "/detail",

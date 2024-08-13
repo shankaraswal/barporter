@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useGetProductListQuery } from "../../features/products/productService";
+import { useNavigate, useLocation, NavLink } from "react-router-dom";
+import {
+  useGetProductListQuery,
+  useGetProductByCategoryQuery,
+  useSearchProductsQuery,
+} from "../../features/products/productService";
 import {
   Pagination,
   CartIcon,
@@ -15,12 +19,37 @@ const PlpGridA = () => {
   const limit = 24;
   const skip = (currentPage - 1) * limit;
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const pathname = location.pathname;
+  const pathParts = pathname.split("/");
+  const category = pathParts.includes("category")
+    ? pathParts[pathParts.indexOf("category") + 1]
+    : null;
+  const searchQuery = new URLSearchParams(location.search).get("q");
+
+  let productQueryResult;
+  if (category) {
+    productQueryResult = useGetProductByCategoryQuery({
+      category,
+      limit,
+      skip,
+    });
+  } else if (searchQuery) {
+    productQueryResult = useSearchProductsQuery({
+      query: searchQuery,
+      limit,
+      skip,
+    });
+  } else {
+    productQueryResult = useGetProductListQuery({ limit, skip });
+  }
 
   const {
     data: productList,
     error: listError,
     isLoading: listIsLoading,
-  } = useGetProductListQuery({ limit, skip });
+  } = productQueryResult;
 
   if (listIsLoading) return <div>Loading...</div>;
   if (listError)
@@ -62,6 +91,15 @@ const PlpGridA = () => {
                       <h5 className="mb-2 text-xl font-semibold text-ellipsis line-clamp-1">
                         {product.title}
                       </h5>
+                      <span
+                        className="block mb-4 text-md  tracking-wider text-red-600 hover:text-red-900 capitalize hover:underline"
+                        onClick={() =>
+                          navigate(`/products/category/${product.category}`)
+                        }
+                      >
+                        {product.category}
+                      </span>
+
                       <p className="mb-3 font-normal text-black text-ellipsis line-clamp-2 dark:text-neutral-400">
                         {product.description}
                       </p>
