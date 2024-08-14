@@ -7,6 +7,11 @@ export { default as Pagination } from "./custom/Pagination";
 export { default as ProfileMenu } from "./custom/ProfileMenu";
 export { default as CartIcon } from "./custom/CartIcon";
 export { default as AddToWishList } from "./custom/AddToWishList";
+export { default as PlpGrid } from "./custom/PlpGrid";
+export { default as SearchBar } from "./custom/SearchBar";
+
+export { default as PlpGridA } from "./custom/PlpGridA";
+export { default as PlpGridB } from "./custom/PlpGridB";
 
 export { default as Header } from "./shared/Header";
 export { default as Hero } from "./shared/Hero";

@@ -7,7 +7,6 @@ import {
 import Layout from "../app/App";
 import ProtectedRoute from "./ProtectedRoutes";
 import { Home, Signup, Signin, Profile, Plp, Pdp, Pnf, Clp } from "../pages";
-// import PlpGridA from "../components/custom/PlpGridA";
 
 export const routeConfig = {
   path: "/",

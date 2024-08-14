@@ -17,7 +17,6 @@ const useAuth = () => {
   };
 
   const userLogout = () => {
-    console.log("User logged-out");
     dispatch(logout());
   };
 

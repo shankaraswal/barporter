@@ -30,7 +30,6 @@ export const loginUser = createAsyncThunk<
 >("auth/loginUser", async (credentials, { rejectWithValue }) => {
   try {
     const data = await authLoginService(credentials);
-    console.log(data);
 
     return data as User;
   } catch (error) {
