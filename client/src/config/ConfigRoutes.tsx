@@ -2,9 +2,10 @@ import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
+  Navigate,
 } from "react-router-dom";
 
-import Layout from "../app/App";
+import Layout from "../layouts/AuthLayout";
 import ProtectedRoute from "./ProtectedRoutes";
 import { Home, Signup, Signin, Profile, Plp, Pdp, Pnf, Clp } from "../pages";
 
@@ -21,8 +22,8 @@ export const routeConfig = {
       slug: "home",
       element: <Home />,
       name: "Home",
-      secure: false,
-      navpart: true,
+      secure: true,
+      navpart: false,
     },
     {
       path: "/",
@@ -45,23 +46,23 @@ export const routeConfig = {
       slug: "profile",
       element: <Profile />,
       name: "User Profile",
-      secure: false,
-      navpart: true,
+      secure: true,
+      navpart: false,
     },
     {
       path: "/categories",
       slug: "categories",
       element: <Clp />,
       name: "Categories",
-      secure: false,
-      navpart: true,
+      secure: true,
+      navpart: false,
     },
     {
       path: "/products",
       slug: "products",
       element: <Plp />,
       name: "Products",
-      secure: false,
+      secure: true,
       navpart: true,
     },
     {
@@ -69,7 +70,7 @@ export const routeConfig = {
       slug: "category-products",
       element: <Plp />, // Category-specific product listing
       name: "Category Products",
-      secure: false,
+      secure: true,
       navpart: false,
     },
     {
@@ -77,7 +78,7 @@ export const routeConfig = {
       slug: "search-products",
       element: <Plp />, // Search-specific product listing
       name: "Search Products",
-      secure: false,
+      secure: true,
       navpart: false,
     },
     {
@@ -85,7 +86,7 @@ export const routeConfig = {
       slug: "detail",
       element: <Pdp />,
       name: "Item Detail",
-      secure: false,
+      secure: true,
       navpart: false,
     },
   ],
@@ -108,7 +109,10 @@ export const routes = createBrowserRouter(
             }
           />
         ))}
-        <Route path="*" element={<Pnf />} />
+        <Route
+          path="*"
+          element={<Navigate to="/" />} // Redirect to a default route if no match
+        />
       </Route>
     </>
   )

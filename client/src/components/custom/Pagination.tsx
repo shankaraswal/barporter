@@ -4,10 +4,12 @@ const Pagination = ({
   currentPage,
   totalPages,
   onPageChange,
+  totalItems,
 }: {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
+  totalItems: any;
 }) => {
   const pages = [];
   for (let i = 1; i <= totalPages; i++) {
@@ -28,7 +30,6 @@ const Pagination = ({
       >
         First
       </button>
-
       <button
         onClick={goToPreviousPage}
         className="px-4 py-2 border bg-white text-neutral-500"
@@ -36,7 +37,6 @@ const Pagination = ({
       >
         Previous
       </button>
-
       {pages.map((page) => (
         <button
           key={page}
@@ -50,7 +50,6 @@ const Pagination = ({
           {page}
         </button>
       ))}
-
       <button
         onClick={goToNextPage}
         className="px-4 py-2 border bg-white text-neutral-500"
@@ -58,7 +57,6 @@ const Pagination = ({
       >
         Next
       </button>
-
       <button
         onClick={goToLastPage}
         className="px-4 py-2 border bg-white text-neutral-500"
@@ -66,6 +64,7 @@ const Pagination = ({
       >
         Last
       </button>
+      [{totalItems}]
     </div>
   );
 };

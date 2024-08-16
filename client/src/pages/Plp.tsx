@@ -4,6 +4,15 @@ import { SearchBar } from "../components";
 
 const Plp = () => {
   const [activeView, setActiveView] = useState("grid_a");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (query: string) => {
+    if (!query) {
+      setSearchQuery(query);
+    } else {
+      setSearchQuery(query);
+    }
+  };
 
   return (
     <>
@@ -11,7 +20,7 @@ const Plp = () => {
         <h2 className="text-4xl text-teal-900 font-semibold w-2/10">
           Product List
         </h2>
-        <SearchBar />
+        <SearchBar onSearch={handleSearch} />
         <div className="flex flex-row w-2/10 gap-2">
           <button
             onClick={() => setActiveView("grid_a")}
@@ -48,16 +57,16 @@ const Plp = () => {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M15 5v14M9 5v14M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"
               />
             </svg>
           </button>
         </div>
       </div>
-      <PlpGrid viewType={activeView} />
+      <PlpGrid viewType={activeView} searchQuery={searchQuery} />
     </>
   );
 };

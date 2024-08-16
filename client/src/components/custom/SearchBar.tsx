@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useGetProductCategoryListQuery } from "../../features/products/productService";
 import { NavLink, useNavigate } from "react-router-dom";
 
-const SearchBar = () => {
+const SearchBar = ({ onSearch }: { onSearch: any }) => {
   const [searchTerm, setSearchTerm] = React.useState("");
+  const [catLabel, setCatLabel] = useState<string>("All categories");
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const {
@@ -12,6 +13,22 @@ const SearchBar = () => {
     isLoading: categoryLoading,
   } = useGetProductCategoryListQuery();
 
+  const handleSearch = () => {
+    if (searchTerm.trim()) {
+      onSearch(searchTerm);
+    } else {
+      onSearch(null);
+    }
+  };
+
+  const handleCatChange = (cat: string | null) => {
+    if (!cat) {
+      setCatLabel("All categories");
+    } else {
+      setCatLabel(cat);
+    }
+    setIsOpen(false);
+  };
   if (categoryLoading) return <div>Loading...</div>;
   if (categoryError)
     return (
@@ -27,11 +44,11 @@ const SearchBar = () => {
     <div className="flex flex-grow mx-12 relative">
       <button
         data-dropdown-toggle="dropdown"
-        className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-lg font-medium text-center text-neutral-900 bg-neutral-100 border border-neutral-300 rounded-s-lg "
+        className="capitalize flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-lg font-medium text-center text-neutral-900 bg-neutral-100 border border-neutral-300 rounded-s-lg "
         type="button"
         onClick={() => setIsOpen(!isOpen)}
       >
-        All categories
+        {catLabel}
         <svg
           className="w-2.5 h-2.5 ms-2.5"
           aria-hidden="true"
@@ -49,19 +66,27 @@ const SearchBar = () => {
         </svg>
       </button>
       <div
-        className={`absolute  bg-white rounded-lg w-60 border border-neutral-300 z-30 top-[58px] ${
+        className={`absolute bg-white rounded-lg w-60 border border-neutral-300 z-30 top-[58px] ${
           isOpen ? "" : "hidden"
         }`}
       >
-        <ul className=" text-lg text-neutral-700">
+        <ul className="text-lg text-neutral-700">
+          <NavLink
+            className="py-2 px-6 bg-neutral-100 border border-b-neutral-300 flex flex-col capitalize cursor-pointer hover:bg-red-100"
+            to="/products"
+            onClick={() => handleCatChange(null)}
+          >
+            {"All categories"}
+          </NavLink>
           {categoryListName &&
             categoryListName.length > 0 &&
             categoryListName?.map((cat) => (
               <NavLink
                 key={cat}
-                className="py-2 px-6 bg-neutral-100 border border-b-neutral-300 flex flex-col capitalize cursor-pointer hover:bg-red-100"
+                // className="py-2 px-6 bg-neutral-100 border border-b-neutral-300 flex flex-col capitalize cursor-pointer hover:bg-red-100"
                 to={`/products/category/${cat}`}
-                onClick={() => setIsOpen(false)}
+                onClick={() => handleCatChange(cat)}
+                className="py-2 px-6 bg-neutral-100 border-b-neutral-300 flex flex-col capitalize cursor-pointer hover:bg-red-100"
               >
                 {cat}
               </NavLink>
@@ -71,13 +96,16 @@ const SearchBar = () => {
       <div className="relative w-full flex">
         <input
           type="search"
-          id="search-dropdown"
-          className="p-4 w-full z-20 text-lg text-blace border border-neutral-400 border-r-0 focus:border-neutral-300 focus:outline-none "
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="p-4 w-full z-20 text-lg text-black border border-neutral-400 border-r-0 focus:border-neutral-300 focus:outline-none"
           placeholder="Search Mockups, Logos, Design Templates... "
           required
+          onClick={() => handleSearch}
         />
         <button
           type="submit"
+          onClick={handleSearch}
           className="top-0 end-0 -ml-2 z-40 px-6 font-medium h-full text-white bg-red-700 hover:bg-red-800 rounded-e-[10px]"
         >
           <svg

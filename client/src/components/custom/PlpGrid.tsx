@@ -9,7 +9,13 @@ import { Pagination, CartIcon, Rating, AddToWishList } from "../../components";
 import { ProductType } from "../../features/products/product.types";
 import { colors } from "../../constants";
 
-const PlpGrid = ({ viewType = "grid_a" }) => {
+const PlpGrid = ({
+  viewType = "grid_a",
+  searchQuery,
+}: {
+  viewType: string;
+  searchQuery: string;
+}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [products, setProducts] = useState<ProductType[]>([]);
   const [hasMore, setHasMore] = useState(true);
@@ -20,14 +26,11 @@ const PlpGrid = ({ viewType = "grid_a" }) => {
   const skip = (currentPage - 1) * limit;
 
   const location = useLocation();
-
   const pathname = location.pathname;
   const pathParts = pathname.split("/");
   const category = pathParts.includes("category")
     ? pathParts[pathParts.indexOf("category") + 1]
     : null;
-
-  const searchQuery = new URLSearchParams(location.search).get("q");
 
   let productQueryResult;
   if (category) {
@@ -64,7 +67,6 @@ const PlpGrid = ({ viewType = "grid_a" }) => {
     isLoading: listIsLoading,
   } = productQueryResult;
 
-  // Infinite scroll logic
   const handleLoadMore = useCallback(
     (entries: any[]) => {
       const target = entries[0];
@@ -90,7 +92,7 @@ const PlpGrid = ({ viewType = "grid_a" }) => {
         }
       };
     }
-  }, [handleLoadMore, viewType]);
+  }, [loaderRef, handleLoadMore]);
 
   useEffect(() => {
     if (
@@ -117,7 +119,7 @@ const PlpGrid = ({ viewType = "grid_a" }) => {
   if (listError)
     return (
       <div>
-        Error:{" "}
+        Error:
         {"message" in listError ? listError.message : "An error occurred"}
       </div>
     );
@@ -131,6 +133,7 @@ const PlpGrid = ({ viewType = "grid_a" }) => {
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={setCurrentPage}
+          totalItems={productList!.total}
         />
       )}
       <section className="container mx-auto py-10 md:py-8 px-0 md:px-0">
@@ -243,6 +246,7 @@ const PlpGrid = ({ viewType = "grid_a" }) => {
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={setCurrentPage}
+          totalItems={productList!.total}
         />
       )}
       {viewType === "grid_b" && (
