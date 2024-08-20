@@ -8,7 +8,7 @@ const router = Router();
 router
   .route("/add")
   .post(verifyJWToken, uploadImage.array("prodImages"), addItem);
-router.route("/list").get(verifyJWToken, itemList);
+router.route("/list").get(itemList);
 router.route("/detail/:id").get(verifyJWToken, itemDetail);
 router.route("/listbycat/:id").get(verifyJWToken, itemsByCategory);
 export default router;
