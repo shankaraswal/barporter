@@ -7,7 +7,7 @@ import userIcon from "../../assets/svg/user.svg";
 import logoutIcon from "../../assets/svg/logout.svg";
 
 const ProfileMenu = () => {
-  const { userLogout, isLoggedIn, user } = useAuth();
+  const { userLogout, isLoggedIn, userLogin, user } = useAuth();
   const [isDdOpen, setIsDdOpen] = useState(true);
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ const ProfileMenu = () => {
     return null;
   }
 
-  const { username, avatar, email } = user?.data?.user as UserData;
+  const { username, avatar, email } = user as UserData;
 
   return (
     <div className="relative right-0 mx-auto bg-neutral-200 rounded-xl ">

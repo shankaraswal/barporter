@@ -1,18 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { authLoginService, authRegistrationService } from "./authApi";
 
-interface AuthState {
-  user: User | null;
-  isLoggedIn: boolean;
-  loading: boolean;
-  error: string | null;
-}
-
-interface User {
-  id: string;
-  email: string;
-}
-
+// Unified UserData interface
 export interface UserData {
   _id: string;
   username: string;
@@ -26,6 +15,7 @@ export interface UserData {
   __v: number;
 }
 
+// Unified AuthResponse interface
 export interface AuthResponse {
   statusCode: number;
   data: {
@@ -37,19 +27,31 @@ export interface AuthResponse {
   success: boolean;
 }
 
+// Interface for the authentication state in the Redux store
+interface AuthState {
+  user: UserData | null; // Store user data directly
+  accessToken: string | null; // Store access token separately
+  isLoggedIn: boolean;
+  loading: boolean;
+  error: string | null;
+}
+
+// Interface for user login credentials
 interface Credentials {
   email: string;
   password: string;
 }
 
+// Interface for user registration data
 interface RegisterData {
   email: string;
   password: string;
-  // Add other registration fields here
+  // TODO: Add other fields as needed
 }
 
 const initialState: AuthState = {
   user: null,
+  accessToken: null,
   isLoggedIn: false,
   loading: false,
   error: null,
@@ -57,11 +59,13 @@ const initialState: AuthState = {
 
 // Load user data from localStorage if available
 const loadUserFromLocalStorage = (): AuthState => {
+  const storedAccessToken = localStorage.getItem("access_token");
   const storedUser = localStorage.getItem("user");
-  if (storedUser) {
-    const user = JSON.parse(storedUser) as User;
+
+  if (storedAccessToken && storedUser) {
     return {
-      user,
+      user: JSON.parse(storedUser) as UserData,
+      accessToken: storedAccessToken,
       isLoggedIn: true,
       loading: false,
       error: null,
@@ -71,27 +75,26 @@ const loadUserFromLocalStorage = (): AuthState => {
 };
 
 export const loginUser = createAsyncThunk<
-  User,
+  AuthResponse,
   Credentials,
   { rejectValue: string }
 >("auth/loginUser", async (credentials, { rejectWithValue }) => {
   try {
     const data = await authLoginService(credentials);
-
-    return data as User;
+    return data as unknown as AuthResponse;
   } catch (error) {
     return rejectWithValue(error as string);
   }
 });
 
 export const registerUser = createAsyncThunk<
-  User,
+  AuthResponse,
   RegisterData,
   { rejectValue: string }
 >("auth/registerUser", async (userData, { rejectWithValue }) => {
   try {
     const data = await authRegistrationService(userData);
-    return data;
+    return data as unknown as AuthResponse;
   } catch (error) {
     return rejectWithValue(error as string);
   }
@@ -103,8 +106,10 @@ const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.user = null;
+      state.accessToken = null;
       state.isLoggedIn = false;
-      localStorage.removeItem("user"); // Clear localStorage on logout
+      localStorage.removeItem("access_token"); // Clear localStorage on logout
+      localStorage.removeItem("user");
     },
   },
   extraReducers: (builder) => {
@@ -113,12 +118,21 @@ const authSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(loginUser.fulfilled, (state, action: PayloadAction<User>) => {
-        state.loading = false;
-        state.user = action.payload;
-        state.isLoggedIn = true;
-        localStorage.setItem("user", JSON.stringify(action.payload)); // Save user to localStorage
-      })
+      .addCase(
+        loginUser.fulfilled,
+        (state, action: PayloadAction<AuthResponse>) => {
+          state.loading = false;
+          state.user = action.payload.data.user;
+          state.accessToken = action.payload.data.accessToken;
+          state.isLoggedIn = true;
+
+          localStorage.setItem("access_token", action.payload.data.accessToken);
+          localStorage.setItem(
+            "user",
+            JSON.stringify(action.payload.data.user)
+          );
+        }
+      )
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
@@ -127,12 +141,21 @@ const authSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(registerUser.fulfilled, (state, action: PayloadAction<User>) => {
-        state.loading = false;
-        state.user = action.payload;
-        state.isLoggedIn = true;
-        localStorage.setItem("user", JSON.stringify(action.payload)); // Save user to localStorage
-      })
+      .addCase(
+        registerUser.fulfilled,
+        (state, action: PayloadAction<AuthResponse>) => {
+          state.loading = false;
+          state.user = action.payload.data.user;
+          state.accessToken = action.payload.data.accessToken;
+          state.isLoggedIn = true;
+
+          localStorage.setItem("access_token", action.payload.data.accessToken);
+          localStorage.setItem(
+            "user",
+            JSON.stringify(action.payload.data.user)
+          );
+        }
+      )
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;

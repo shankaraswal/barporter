@@ -8,6 +8,7 @@ import {
 import Layout from "../layouts/AuthLayout";
 import ProtectedRoute from "./ProtectedRoutes";
 import { Home, Signup, Signin, Profile, Plp, Pdp, Pnf, Clp } from "../pages";
+import Ilp from "../pages/Ilp";
 
 export const routeConfig = {
   path: "/",
@@ -56,6 +57,14 @@ export const routeConfig = {
       name: "Categories",
       secure: true,
       navpart: false,
+    },
+    {
+      path: "/items",
+      slug: "items",
+      element: <Ilp />,
+      name: "Items",
+      secure: false,
+      navpart: true,
     },
     {
       path: "/products",
