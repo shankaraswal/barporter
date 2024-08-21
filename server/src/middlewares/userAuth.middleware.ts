@@ -10,7 +10,7 @@ export const verifyJWToken = asyncHandler(
     next: NextFunction
   ) => {
     try {
-      console.log("verifyJWToken middleware called", req.headers);
+      // console.log("verifyJWToken middleware called", req.headers);
       // Extract token from cookies or Authorization header
       const token = req
         .header("Authorization")

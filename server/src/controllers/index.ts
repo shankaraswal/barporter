@@ -14,4 +14,6 @@ export {
   itemList,
   itemDetail,
   itemsByCategory,
+  addCategory,
+  categoryList,
 } from "./item.controller";
