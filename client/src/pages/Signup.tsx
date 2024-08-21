@@ -13,25 +13,25 @@ function Signup() {
 
   return (
     <div className="justify-center">
-      <div className="mb-10 flex justify-center">
+      <div className="py-12 flex justify-center bg-neutral-50 rounded-t-2xl">
         <Logo baseWidth="100px" />
       </div>
-      <div className="bg-gray-300 p-20 rounded-lg mt-10">
+      <div className="bg-neutral-50 p-10 rounded-lg rounded-b-2xl py-12">
         <h2 className=" text-center text-teal-700 text-3xl font-bold">
           Sign up for Trader account
         </h2>
         <p className="mt-4 text-center text-neutral-600 text-xl">
           Already have an account?
           <NavLink
-            to="/"
+            to="/signin"
             className="ml-3 font-medium text-primary text-red-700 underline transition-all duration-200 hover:underline"
           >
             Sign In
           </NavLink>
         </p>
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-        <div className="w-full h-full ">
-          <form className="flex flex-nowrap gap-10 p-10 my-8">
+        <div className="w-full h-full min-w-[800px]">
+          <form className="flex flex-nowrap gap-10 py-10 my-8 w-full ">
             <div className="w-full lg:w-1/2 space-y-8 custom-signup-class">
               <Input
                 label="Full Name: "
@@ -108,9 +108,9 @@ function Signup() {
           </form>
           <div className="w-full flex justify-center">
             <Button
-              type="submit"
               onClick={() => navigate("/profile")}
-              className="w-1/3 bg-teal-900 hover:bg-teal-700 py-3 text-2xl mt-4"
+              type="submit"
+              className="flex flex-col text-center items-center w-full max-w-[300px] bg-teal-900 m-auto hover:bg-teal-700 py-3  text-2xl"
             >
               Create Account
             </Button>

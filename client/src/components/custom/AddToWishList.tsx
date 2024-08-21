@@ -3,7 +3,10 @@ import React from "react";
 function AddToWishList({ bgcolor }: { bgcolor: string }) {
   return (
     <>
-      <button type="button" className={`bg-transparent`}>
+      <button
+        type="button"
+        className="bg-opacity-100 bg-white rounded-[8px] w-10 h-10 text-center items-center justify-center flex border border-gray-300 pt-1"
+      >
         <svg
           className={`h-8 w-8`}
           aria-hidden="true"

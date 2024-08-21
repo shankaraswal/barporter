@@ -1,25 +1,50 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useGetProductListQuery } from "../../features/products/productService";
+import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import {
-  Pagination,
-  CartIcon,
-  Rating,
-  AddToWishList,
-} from "../../components/index";
+  useGetProductListQuery,
+  useGetProductByCategoryQuery,
+  useSearchProductsQuery,
+} from "../../features/products/productService";
+import { Pagination, CartIcon, Rating, AddToWishList } from "../../components";
 import { ProductType } from "../../features/products/product.types";
+import { colors } from "../../constants";
 
-const PlpGridA = ({ colors }: { colors: string[] }) => {
+const PlpGridA = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const limit = 24;
+  const limit = 30;
   const skip = (currentPage - 1) * limit;
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const pathname = location.pathname;
+  const pathParts = pathname.split("/");
+  const category = pathParts.includes("category")
+    ? pathParts[pathParts.indexOf("category") + 1]
+    : null;
+  const searchQuery = new URLSearchParams(location.search).get("q");
+
+  let productQueryResult;
+  if (category) {
+    productQueryResult = useGetProductByCategoryQuery({
+      category,
+      limit,
+      skip,
+    });
+  } else if (searchQuery) {
+    productQueryResult = useSearchProductsQuery({
+      query: searchQuery,
+      limit,
+      skip,
+    });
+  } else {
+    productQueryResult = useGetProductListQuery({ limit, skip });
+  }
 
   const {
     data: productList,
     error: listError,
     isLoading: listIsLoading,
-  } = useGetProductListQuery({ limit, skip });
+  } = productQueryResult;
 
   if (listIsLoading) return <div>Loading...</div>;
   if (listError)
@@ -61,6 +86,15 @@ const PlpGridA = ({ colors }: { colors: string[] }) => {
                       <h5 className="mb-2 text-xl font-semibold text-ellipsis line-clamp-1">
                         {product.title}
                       </h5>
+                      <p
+                        className="mb-4 text-md  tracking-wider text-red-600 hover:text-red-900 capitalize hover:underline"
+                        onClick={() =>
+                          navigate(`/products/category/${product.category}`)
+                        }
+                      >
+                        {product.category}
+                      </p>
+
                       <p className="mb-3 font-normal text-black text-ellipsis line-clamp-2 dark:text-neutral-400">
                         {product.description}
                       </p>

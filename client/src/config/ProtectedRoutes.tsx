@@ -1,11 +1,14 @@
-import React from "react";
+// ProtectedRoute.tsx
 import { Navigate } from "react-router-dom";
-import useAuth from "../hooks/useAuth"; // Make sure the path is correct
+import useAuth from "../hooks/useAuth";
 
-const ProtectedRoute: React.FC<{ element: React.ReactElement }> = ({
-  element,
-}) => {
+interface ProtectedRouteProps {
+  element: JSX.Element;
+}
+
+const ProtectedRoute = ({ element }: ProtectedRouteProps) => {
   const { isLoggedIn } = useAuth();
+
   return isLoggedIn ? element : <Navigate to="/" />;
 };
 

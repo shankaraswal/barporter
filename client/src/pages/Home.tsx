@@ -8,7 +8,7 @@ const Home = () => {
       <div className="relative overflow-hidden w-full mb-10">
         <section className="relative overflow-hidden bg-white">
           <div className="max-w-lg">
-            <h1 className="text-6xl font-semibold text-red-800 mb-10 leading-[80px]">
+            <h1 className="text-4xl font-semibold text-red-800 mb-10 leading-[80px]">
               Summer styles are finally here
             </h1>
             <p>
@@ -114,7 +114,7 @@ const Home = () => {
           }}
         >
           <div className="flex flex-col px-4 text-center py-24 min-h-[600px] justify-center ">
-            <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
+            <h1 className="mb-4 text-4xl font-medium tracking-widest leading-loose text-white md:text-5xl lg:text-8xl">
               We invest in the world’s potential
             </h1>
             <p className="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">

@@ -20,11 +20,9 @@ function Profile() {
           }}
         ></div>
         <div className="text-2xl flex-col">
-          <h2 className="text-6xl text-teal-900 mb-6 font-semibold">
-            John Doe
-          </h2>
+          <h2 className="text-4xl text-teal-900 font-semibold">John Doe</h2>
           <p>Software Engineer</p>
-          <h3 className="mt-10 mb-4 text-3xl font-semibold">
+          <h3 className="mt-10 mb-4 text-2xl font-semibold">
             Contact Information
           </h3>
           <div className="space-y-6 text-xl">
@@ -38,12 +36,12 @@ function Profile() {
               <strong>Address:</strong> 1234 Street Name, City, State, 56789
             </p>
           </div>
-          <h3 className="mt-10 mb-4 text-3xl font-semibold">Rating</h3>
+          <h3 className="mt-10 mb-4 text-2xl font-semibold">Rating</h3>
           <Rating />
         </div>
       </div>
       <div className="mb-4">
-        <h3 className="mt-10 mb-4 text-3xl font-semibold">About</h3>
+        <h3 className="mt-10 mb-4 text-2xl font-semibold">About</h3>
         <div className="mt-2 text-xl">
           <p>
             John is a seasoned software engineer with over 10 years of
@@ -77,7 +75,7 @@ function Profile() {
             asset to any team.
           </p>
         </div>
-        <h3 className="mt-10 mb-4 text-3xl font-semibold">Location</h3>
+        <h3 className="mt-10 mb-4 text-2xl font-semibold">Location</h3>
         <Geolocation />
       </div>
       <div className="my-4">
@@ -94,7 +92,7 @@ function Profile() {
         </button>
 
         <button
-          onClick={() => navigate("/list")}
+          onClick={() => navigate("/products")}
           className="ml-4 mt-8 bg-red-700 text-white py-2 px-4 rounded hover:bg-red-600"
         >
           Item List

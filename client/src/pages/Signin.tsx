@@ -20,14 +20,14 @@ function Signin() {
     if (isLoggedIn) handleRedirect();
   }, [isLoggedIn]);
 
-  const handleRedirect = () => navigate("/list");
+  const handleRedirect = () => navigate("/products");
 
   return (
-    <div className="justify-center max-w-[500px] mx-auto">
-      <div className="mb-10 flex justify-center">
+    <div className="justify-center">
+      <div className="py-12 flex justify-center bg-neutral-50 rounded-t-2xl">
         <Logo baseWidth="100px" />
       </div>
-      <div className=" bg-gray-300 p-20 rounded-lg mt-10">
+      <div className="bg-neutral-50 p-10 rounded-lg rounded-b-2xl py-12">
         <h2 className="text-center text-teal-700 text-3xl font-bold">
           Sign in to your account
         </h2>
@@ -58,7 +58,7 @@ function Signin() {
             <Button
               onClick={handleUserLogin}
               type="submit"
-              className="w-full my-10 bg-teal-900 hover:bg-teal-700 py-3 text-2xl"
+              className="flex flex-col text-center items-center w-full max-w-[200px] bg-teal-900 m-auto hover:bg-teal-700 py-3 text-2xl"
             >
               Sign in
             </Button>
