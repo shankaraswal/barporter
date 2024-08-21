@@ -5,7 +5,7 @@ import {
   asyncHandler,
   imageUploadHandler,
 } from "../utils";
-import { Item, IItem, User, IUser } from "../models";
+import { Item, IItem, User, IUser, Category, ICategory } from "../models";
 
 // ---------------------------------------------------------------
 // ADD ITEM
@@ -163,4 +163,79 @@ const itemsByCategory = asyncHandler(
   }
 );
 
-export { addItem, itemList, itemDetail, itemsByCategory };
+// ---------------------------------------------------------------
+// ADD CATEGORY
+// ---------------------------------------------------------------
+const addCategory = asyncHandler(
+  async (
+    req: Request & { file?: Express.Multer.File },
+    res: Response
+  ): Promise<void> => {
+    console.log(req.body);
+    const { name } = req.body;
+
+    // Validate the category name
+    if (!name || name.trim() === "") {
+      throw new ApiErrorHandler(400, "Category name is required");
+    }
+
+    // Check if a file (image) is uploaded
+    const categoryImagePath = req.file?.path;
+
+    if (!categoryImagePath) {
+      throw new ApiErrorHandler(400, "Please upload a category image");
+    }
+
+    // Upload the image and get the URL
+    const uploadResult = await imageUploadHandler(categoryImagePath);
+    const categoryImage = uploadResult.url;
+
+    if (!categoryImage) {
+      throw new ApiErrorHandler(400, "Failed to upload the category image");
+    }
+
+    // Create the new category in the database
+    const category = await Category.create({
+      name,
+      image: categoryImage,
+    });
+
+    const isCategoryAdded = await Category.findById(category._id);
+
+    if (!isCategoryAdded)
+      throw new ApiErrorHandler(500, "Category not added to DB");
+
+    res.status(201).json(
+      new ApiResponseHandler(201, {
+        message: "Category added successfully to DB",
+        category,
+      })
+    );
+  }
+);
+
+// ---------------------------------------------------------------
+// CATEGORY LIST
+// ---------------------------------------------------------------
+const categoryList = asyncHandler(
+  async (req: Request, res: Response): Promise<any> => {
+    const catList = await Promise.all(await Category.find());
+
+    return res.status(200).json(
+      new ApiResponseHandler(200, {
+        message: "Category list data retrieved successfully",
+        count: catList.length,
+        catList: catList,
+      })
+    );
+  }
+);
+
+export {
+  addItem,
+  itemList,
+  itemDetail,
+  itemsByCategory,
+  addCategory,
+  categoryList,
+};
